@@ -44,7 +44,7 @@
               case "GET /items/{id}":
                 let userId1 = event.pathParameters.id;
                 var params = {
-                  TableName: "http-crud-tutorial-items-demo",
+                  TableName: "http-crud-tutorial-items",
                   // ProjectionExpression: "nightId, userId","startTimeMilli", "endTimeMilli", "sleepQuality",
                   FilterExpression: "#userId1 = :userId",
                   ExpressionAttributeNames: {
@@ -60,13 +60,13 @@
                   .promise();
                 break;
               case "GET /items":
-                body = await dynamo.scan({ TableName: "http-crud-tutorial-items-demo" }).promise();
+                body = await dynamo.scan({ TableName: "http-crud-tutorial-items" }).promise();
                 break;
               case "POST /items":
                 let requestJSON = JSON.parse(event.body);
                 await dynamo
                   .put({
-                    TableName: "http-crud-tutorial-items-demo",
+                    TableName: "http-crud-tutorial-items",
                     Item: {
                       nightId: event.requestContext.requestId,
                       userId: requestJSON.userId,
@@ -101,7 +101,7 @@
         async function scanCrudTable(userId) {
           console.log('printing the incoming', userId);
           var params = {
-            TableName: "http-crud-tutorial-items-demo",
+            TableName: "http-crud-tutorial-items",
             ProjectionExpression: "nightId, userId",
             FilterExpression: "#userId = :userId",
             ExpressionAttributeNames: {
@@ -119,7 +119,7 @@
         async function deleteRecord(nightId) {
 
           return dynamo.delete({
-            TableName: "http-crud-tutorial-items-demo",
+            TableName: "http-crud-tutorial-items",
             Key: {
               nightId: nightId
             }
