@@ -1,3 +1,10 @@
+First, we create a DynamoDB table using the DynamoDB console. Then we create a Lambda function using the AWS Lambda console. Next, we create an HTTP API using the API Gateway console. Lastly, we test our API.
+
+When we invoke our HTTP API, API Gateway routes the request to our Lambda function. The Lambda function interacts with DynamoDB and returns a response to API Gateway. API Gateway then returns a response to us.
+
+Step 1: Create a DynamoDB table
+We use a DynamoDB table to store data for our API.
+
 Each item has a unique ID, which we use as the partition key for the table.
 
 To create a DynamoDB table
@@ -5,8 +12,9 @@ To create a DynamoDB table
 Open the DynamoDB console at https://console.aws.amazon.com/dynamodb/.
 Choose Create table.
 For Table name, enter http-crud-tutorial-items.
-For Primary key, enter id.
+For Primary key, enter nightId.
 Choose Create.
+
 Step 2: Create a Lambda function
 We create a Lambda function for the backend of our API. This Lambda function creates, reads, updates, and deletes items from DynamoDB. The function uses events from API Gateway to determine how to interact with DynamoDB. For simplicity, this tutorial uses a single Lambda function. As a best practice, we should create separate functions for each route.
 
