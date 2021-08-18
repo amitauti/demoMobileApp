@@ -29,8 +29,10 @@ For Role name, enter http-crud-tutorial-role.
 For Policy templates, choose Simple microservice permissions. This policy grants the Lambda function permission to interact with DynamoDB.Note
 
 Choose Create function.
-Open index.js in the console’s code editor, and replace its contents with the following code. Choose Deploy to update function.
+Open index.js in the console’s code editor, and replace its contents with the code from lambda.js. Choose Deploy to update function.
+
 Step 3: Create an HTTP API
+
 The HTTP API provides an HTTP endpoint for our Lambda function. In this step, we create an empty API. In the following steps, we configure routes and integrations to connect our API and Lambda function.
 
 To create an HTTP API
@@ -42,12 +44,13 @@ Choose Next.
 For Configure routes, choose Next to skip route creation. We create routes later.
 Review the stage that API Gateway creates for us, and then choose Next.
 Choose Create.
+
 Step 4: Create routes
 Routes are a way to send incoming API requests to backend resources. Routes consist of two parts: an HTTP method and a resource path, for example, GET /items. For this example API, we create four routes:
 
 GET /items/{id}
 GET /items
-PUT /items
+POST /items
 DELETE /items/{id}
 To create routes
 
@@ -58,7 +61,7 @@ Choose Create.
 For Method, choose GET.
 For the path, enter /items/{id}. The {id} at the end of the path is a path parameter that API Gateway retrieves from the request path when a client makes a request.
 Choose Create.
-Repeat steps 4-7 for GET /items, DELETE /items/{id}, and PUT /items.
+Repeat steps 4-7 for GET /items, DELETE /items/{id}, and POST /items.
 
 Step 5: Create an integration
 We create an integration to connect a route to backend resources. For this example API, we create one Lambda integration that we use for all routes.
